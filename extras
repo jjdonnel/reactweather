@@ -1,0 +1,36 @@
+switchImage(condition);
+
+    let image;
+    console.log(data.current.weather[0].main);
+        switch(data.current.weather[0].main) {
+            case 'Clouds':
+                image = 'https://res.cloudinary.com/jjdonnel/image/upload/v1574714587/icons/newCloudy.png';
+            break;
+            case 'Clear':
+                image = 'https://res.cloudinary.com/jjdonnel/image/upload/v1574665973/icons/newSun.png';
+            break;
+            case 'Rain':
+                image = 'https://res.cloudinary.com/jjdonnel/image/upload/v1574716556/icons/newCloudRain.png';
+            break;
+            case 'Mist':
+                image = 'https://res.cloudinary.com/jjdonnel/image/upload/v1574722752/icons/newFog.png';
+            break;
+            default: 
+                image = 'https://res.cloudinary.com/jjdonnel/image/upload/v1580050225/icons/newCloudRain1.png';
+
+        }
+
+         <div>
+      <h1>
+        Weather for {weather.name}
+       </h1>
+      {(typeof weather.main != 'undefined') ? (
+            <div>
+              <h2>{(weather.main.temp).toFixed(0)}&deg;F</h2>
+              <h2>{(weather.wind.speed).toFixed(0)} mph</h2>
+              <h2>{weather.wind.deg} deg</h2>
+            </div>
+      ) : (
+        
+      )}
+    </div> 
