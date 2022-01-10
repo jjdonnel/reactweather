@@ -76,7 +76,7 @@ return (
         <WeatherData address={myLocation} data={weather}/>
       </div>
     )
-    :  ('loading...') 
+    :  ('loading data...again') 
     
     }
   </div>
