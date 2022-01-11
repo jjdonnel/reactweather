@@ -3,6 +3,7 @@ import React, { useEffect } from 'react';
 import { useState } from 'react';
 // import Menu from './components/Menu';
 import { WeatherData } from './components/WeatherData';
+import axios from 'axios';
 
 const apiKey = process.env.REACT_APP_API_KEY;
 const atHereApi = process.env.REACT_APP_HERE_API_KEY;
@@ -49,8 +50,8 @@ const App = () => {
                 
                 );
 
-          await fetch(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=imperial&appid=${apiKey}`)
-          .then(response => response.json())
+          await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=imperial&appid=${apiKey}`)
+          .then(response => response.data)
           .then(result => {
             setWeather(result);
             console.log(result);
