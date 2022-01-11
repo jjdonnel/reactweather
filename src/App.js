@@ -27,7 +27,6 @@ const App = () => {
   useEffect( () => {
     
     const getData = async () => {
-      try {
         await navigator.geolocation.getCurrentPosition(
           getLocation
           );
@@ -56,9 +55,6 @@ const App = () => {
             setWeather(result);
             console.log(result);
           });
-      } catch (err) {
-        console.log(err);
-      }
     }
   getData();
   }, [lat, long]);
