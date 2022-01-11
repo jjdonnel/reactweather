@@ -33,7 +33,7 @@ const App = () => {
         console.log(lat, long);
         const H = window.H;
         var platform = new H.service.Platform({
-          'apikey': atHereApi
+          "apikey": atHereApi
           });
         var geocoder = platform.getSearchService();
                     geocoder.reverseGeocode(
@@ -76,7 +76,7 @@ return (
         <WeatherData address={myLocation} data={weather}/>
       </div>
     )
-    :  ('loading data...again') 
+    :  ('loading...') 
     
     }
   </div>
