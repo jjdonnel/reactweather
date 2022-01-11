@@ -33,7 +33,7 @@ const App = () => {
         console.log(lat, long);
         const H = window.H;
         var platform = new H.service.Platform({
-          "apikey": atHereApi
+          'apikey': atHereApi
           });
         var geocoder = platform.getSearchService();
                     geocoder.reverseGeocode(
