@@ -23,6 +23,10 @@
   transition: height ease 0.5s;
 
 }
+
+* {
+  color: yellow;
+}
 .bg {
   color: rgb(255, 255, 255);
   text-shadow: 2px 2px black;
@@ -91,6 +95,10 @@ p {
   margin: 0.2rem;
 }
 
+span {
+  color: rgb(255, 255, 255);
+}
+
 .wind {
   text-align: center;
 }
@@ -98,10 +106,16 @@ p {
   background-image: url('https://res.cloudinary.com/jjdonnel/image/upload/v1568960016/cloudy_qnxsnb.jpg');
 }
 
+.cloudyNight {
+  background-image: url('https://res.cloudinary.com/jjdonnel/image/upload/v1568960011/partly-cloudy-night-moon_xcxrcu.jpg');
+}
 .clear {
   background-image: url('https://res.cloudinary.com/jjdonnel/image/upload/v1573714285/blueSky.jpg');
 }
 
+.clearNight {
+  background-image: url('https://res.cloudinary.com/jjdonnel/image/upload/v1567654813/NightSky_u3ts5x.png');
+}
 .snow {
   background-image: url('https://res.cloudinary.com/jjdonnel/image/upload/v1573031978/snowflakes_c2n8jy.jpg');
 }

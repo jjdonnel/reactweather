@@ -64,8 +64,14 @@ return (
   <div>
     {(typeof weather.current != 'undefined') ? (
       <div className= {
-        (weather.current.weather[0].main === 'Clouds') ? 'bg cloudy' : 
-        (weather.current.weather[0].main === 'Clear') ? 'bg clear' : 
+        (weather.current.weather[0].icon === '02d') ? 'bg cloudy' : 
+        (weather.current.weather[0].icon === '03d') ? 'bg cloudy' :
+        (weather.current.weather[0].icon === '04d') ? 'bg cloudy' :
+        (weather.current.weather[0].icon === '02n') ? 'bg cloudyNight' :
+        (weather.current.weather[0].icon === '03n') ? 'bg cloudyNight' :
+        (weather.current.weather[0].icon === '04n') ? 'bg cloudyNight' :
+        (weather.current.weather[0].icon === '01d') ? 'bg clear' : 
+        (weather.current.weather[0].icon === '01n') ? 'bg clearNight' : 
         (weather.current.weather[0].main === 'Snow') ? 'bg snow' : 
         (weather.current.weather[0].main === 'Rain') ? 'bg rain' : 
         (weather.current.weather[0].main === 'Thunderstorm') ? 'bg thunderstorm' : 'bg clear'
