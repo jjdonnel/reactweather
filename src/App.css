@@ -77,14 +77,20 @@
 .daily {
   font-size: 16px;
   display: flex;
+  flex-direction: row;
   height: 25vh;
   overflow: scroll;
 }
 
 .day {
-  display: flex;
-  flex-direction: column;
-  justify-content: space-around;
+  margin-left: .2rem;
+  margin-right: .2rem;
+  padding-left: .2rem;
+  padding-right: .2rem;
+  width: 150px;
+  display: flex; 
+  flex-direction: column; 
+  /* justify-content: s; */
 }
 
 .dateTime {

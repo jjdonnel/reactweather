@@ -14,12 +14,15 @@ export const WeatherData = ({data, address}) => {
         const points = [ 'N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW' ];
         const windDir = points[Math.round(deg / 45) % 8];
         const wind = (data.current.wind_speed).toFixed();
-        const gust = () => {if (data.current.wind_gust === 'undefined') {
-             ;  
-        } else {
-            (data.current.wind_gust).toFixed();
-        }
-    }
+        const gust = (wind * 1.5).toFixed();
+    //     const gust = () => {if (data.current.wind_gust === 'undefined') {
+    //          ;  
+    //     } else {
+    //         (data.current.wind_gust).toFixed();
+    //     }
+    // }
+
+    // const parentRef = useRef();
 
         // const gusts = (gust).toFixed() + ' mph';
 
@@ -92,7 +95,8 @@ export const WeatherData = ({data, address}) => {
                  const deg = hour.wind_deg;
                  const points = [ 'N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW' ];
                  const windDir = points[Math.round(deg / 45) % 8];
-                 const gusts = (hour.wind_gust).toFixed();
+                 const wind = (hour.wind_speed).toFixed();
+                 const gusts = (wind * 1.5).toFixed();
                 //  const wind = windDir + ' at ' + gusts;
 
                  const condition = (hour.weather[0].icon);
@@ -116,12 +120,26 @@ export const WeatherData = ({data, address}) => {
             {data.daily.map(day => {
                 const condition = (day.weather[0].icon);
                 return (
-                    <div className='day'>
-                        <p>{moment.unix(day.dt).tz(data.timezone).format('ddd')}</p>
-                        <p>Hi:&nbsp;<span>{(day.temp.max).toFixed()}&deg;</span></p> 
-                        <p>Lo:&nbsp;<span>{(day.temp.min).toFixed()}&deg;</span></p>
-                        <p>Pre:&nbsp;<span>{((day.pop)*100).toFixed()}&nbsp;%</span></p> 
-                        <img src={switchImage(condition)}  style={{height: '50px', width: '50px'}} alt='hourly icon'/>
+                    <div className= {
+                        (day.weather[0].icon === '02d') ? 'day cloudy' : 
+                        (day.weather[0].icon === '03d') ? 'day cloudy' :
+                        (day.weather[0].icon === '04d') ? 'day cloudy' :
+                        (day.weather[0].icon === '02n') ? 'day cloudyNight' :
+                        (day.weather[0].icon === '03n') ? 'day cloudyNight' :
+                        (day.weather[0].icon === '04n') ? 'day cloudyNight' :
+                        (day.weather[0].icon === '01d') ? 'day clear' : 
+                        (day.weather[0].icon === '01n') ? 'day clearNight' : 
+                        (day.weather[0].main === 'Snow') ? 'day snow' : 
+                        (day.weather[0].main === 'Rain') ? 'day rain' : 
+                        (day.weather[0].main === 'Thunderstorm') ? 'day thunderstorm' : 'day clear'
+                      }>
+                        {/* <div className='day'> */}
+                            <p>{moment.unix(day.dt).tz(data.timezone).format('ddd')}</p>
+                            <p>Hi:&nbsp;<span>{(day.temp.max).toFixed()}&deg;</span></p> 
+                            <p>Lo:&nbsp;<span>{(day.temp.min).toFixed()}&deg;</span></p>
+                            <p>Pre:&nbsp;<span>{((day.pop)*100).toFixed()}&nbsp;%</span></p> 
+                            <img src={switchImage(condition)}  style={{height: '50px', width: '50px'}} alt='hourly icon'/>
+                        {/* </div> */}
                     </div>
                 )
             })}
