@@ -21,7 +21,9 @@ export const WeatherData = ({data, address}) => {
     //         (data.current.wind_gust).toFixed();
     //     }
     // }
-
+    function refreshPage() {
+        window.location.reload(false);
+      }
     // const parentRef = useRef();
 
         // const gusts = (gust).toFixed() + ' mph';
@@ -66,7 +68,7 @@ export const WeatherData = ({data, address}) => {
             
             <div className='currently'>
                 <div className='locale'>
-                    <p>{address}</p>
+                    <p onClick={refreshPage}>{address}</p>
                     <p className='dateTime'>{date},&nbsp;{time}</p>
                 </div>
                 
