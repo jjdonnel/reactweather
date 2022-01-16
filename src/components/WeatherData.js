@@ -1,76 +1,86 @@
-import React from "react";
+import {React, useState, useRef } from "react";
 import moment from 'moment-timezone';
 
 export const WeatherData = ({data, address}) => {
 
     const d = new Date();
         let date = d.toString().split(' ').splice(0,3).join(' ');
-
         let time = new Date().toLocaleString('en-US',{hour:'numeric',minute:'numeric'});
-
-        
 
         const deg = data.current.wind_deg;
         const points = [ 'N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW' ];
         const windDir = points[Math.round(deg / 45) % 8];
         const wind = (data.current.wind_speed).toFixed();
         const gust = (wind * 1.5).toFixed();
-    //     const gust = () => {if (data.current.wind_gust === 'undefined') {
-    //          ;  
-    //     } else {
-    //         (data.current.wind_gust).toFixed();
-    //     }
-    // }
+
     function refreshPage() {
         window.location.reload(false);
       }
-    // const parentRef = useRef();
 
-        // const gusts = (gust).toFixed() + ' mph';
-
-        function switchImage(condition) {
-            const image = {
-                '01d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699118/icons/smallSunShadow_wh9eed.png',
-                '01n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699145/icons/smallMoonShadow_yc5vom.png',
-                '02d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641971374/icons/imageFewClouds_gz2nuy.png',
-                '02n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641971377/icons/imageFewCloudsNight_pvdbtj.png',
-                '03d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699093/icons/smallPartlyCloudyShadow_egwyl7.png',
-                '03n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699078/icons/smallPartlyCloudyNightShadow_xalsjo.png',
-                '04d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699849/icons/smallCloudyShadow_krernp.png',
-                '04n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699849/icons/smallCloudyShadow_krernp.png',
-                '09d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699091/icons/smallPartlyCloudyRainShadow_wglhla.png',
-                '09n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699087/icons/smallPartlyCloudyNightShowerShadow_acdvma.png',
-                '10d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699104/icons/smallRainShadow_wbuqyd.png',
-                '10n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699104/icons/smallRainShadow_wbuqyd.png',
-                '11d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699181/icons/lightningStorm_qasj5h.png',
-                '11n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699181/icons/lightningStorm_qasj5h.png',
-                '13d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699116/icons/smallSnowShadow_cxqhox.png',
-                '13n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699116/icons/smallSnowShadow_cxqhox.png',
-                '50d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641700135/icons/smallFogShadow_pcosu5.png',
-                '50n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641700135/icons/smallFogShadow_pcosu5.png',
-                'default': 'no image'
-            }
-            return image[condition] 
+    function switchImage(condition) {
+        const image = {
+            '01d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699118/icons/smallSunShadow_wh9eed.png',
+            '01n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699145/icons/smallMoonShadow_yc5vom.png',
+            '02d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641971374/icons/imageFewClouds_gz2nuy.png',
+            '02n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641971377/icons/imageFewCloudsNight_pvdbtj.png',
+            '03d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699093/icons/smallPartlyCloudyShadow_egwyl7.png',
+            '03n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699078/icons/smallPartlyCloudyNightShadow_xalsjo.png',
+            '04d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699849/icons/smallCloudyShadow_krernp.png',
+            '04n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699849/icons/smallCloudyShadow_krernp.png',
+            '09d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699091/icons/smallPartlyCloudyRainShadow_wglhla.png',
+            '09n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699087/icons/smallPartlyCloudyNightShowerShadow_acdvma.png',
+            '10d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699104/icons/smallRainShadow_wbuqyd.png',
+            '10n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699104/icons/smallRainShadow_wbuqyd.png',
+            '11d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699181/icons/lightningStorm_qasj5h.png',
+            '11n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699181/icons/lightningStorm_qasj5h.png',
+            '13d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699116/icons/smallSnowShadow_cxqhox.png',
+            '13n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641699116/icons/smallSnowShadow_cxqhox.png',
+            '50d': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641700135/icons/smallFogShadow_pcosu5.png',
+            '50n': 'https://res.cloudinary.com/jjdonnel/image/upload/v1641700135/icons/smallFogShadow_pcosu5.png',
+            'default': 'no image'
         }
+        return image[condition] 
+    }
 
     const condition = (data.current.weather[0].icon);
 
+    const [alert, setAlert] = useState(false);
+
+    // function showAlert() {
+        
+    //     setStyle('alert');
+
+    // }
+
+    const infoRef = useRef();
+
     return (
-        <div>
+        <div>            
             {data.alerts ?
                 <div>
-                    <div>
-                        {data.alerts[0].description}
+                    <div className='alertName' onClick={() => setAlert(!alert)}>
+                        {data.alerts[0].event}
                     </div>
                 </div> : 
                 ''
-            }
+                }
             
+            <div className='alert' ref={infoRef} 
+            style={ alert ? {height: infoRef.current.scrollHeight + 'px'} : {height: '0px'}}>
+                {data.alerts[0].description}
+                <hr/>
+            </div>
+
             <div className='currently'>
                 <div className='locale'>
-                    <p onClick={refreshPage}>{address}</p>
+                    {/* <form onSubmit={getCityData}>
+                        <input type='text' placeholder={address}/>
+                    </form> */}
+                    <p>{address}</p>
                     <p className='dateTime'>{date},&nbsp;{time}</p>
                 </div>
+
+                <button onClick={refreshPage}>reload</button>
                 
                 <div className='innerTop'>
                     <p><span>{(data.current.temp).toFixed()}&deg;</span></p>
@@ -99,8 +109,6 @@ export const WeatherData = ({data, address}) => {
                  const windDir = points[Math.round(deg / 45) % 8];
                  const wind = (hour.wind_speed).toFixed();
                  const gusts = (wind * 1.5).toFixed();
-                //  const wind = windDir + ' at ' + gusts;
-
                  const condition = (hour.weather[0].icon);
                 
                 return (
@@ -135,13 +143,11 @@ export const WeatherData = ({data, address}) => {
                         (day.weather[0].main === 'Rain') ? 'day rain' : 
                         (day.weather[0].main === 'Thunderstorm') ? 'day thunderstorm' : 'day clear'
                       }>
-                        {/* <div className='day'> */}
-                            <p>{moment.unix(day.dt).tz(data.timezone).format('ddd')}</p>
-                            <p>Hi:&nbsp;<span>{(day.temp.max).toFixed()}&deg;</span></p> 
-                            <p>Lo:&nbsp;<span>{(day.temp.min).toFixed()}&deg;</span></p>
-                            <p>Pre:&nbsp;<span>{((day.pop)*100).toFixed()}&nbsp;%</span></p> 
-                            <img src={switchImage(condition)}  style={{height: '50px', width: '50px'}} alt='hourly icon'/>
-                        {/* </div> */}
+                        <p>{moment.unix(day.dt).tz(data.timezone).format('ddd')}</p>
+                        <p>Hi:&nbsp;<span>{(day.temp.max).toFixed()}&deg;</span></p> 
+                        <p>Lo:&nbsp;<span>{(day.temp.min).toFixed()}&deg;</span></p>
+                        <p>Pre:&nbsp;<span>{((day.pop)*100).toFixed()}&nbsp;%</span></p> 
+                        <img src={switchImage(condition)}  style={{height: '50px', width: '50px'}} alt='hourly icon'/>
                     </div>
                 )
             })}

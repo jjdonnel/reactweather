@@ -37,12 +37,40 @@
   /* padding: 1rem; */
 }
 
+button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: rgb(0, 119, 255);
+  border: none;
+  border-radius: 5px;
+  color: white;
+}
+
+.alert {
+  padding-left: 1rem;
+  padding-right: 1rem;
+  overflow: hidden;
+  transition: height .5s ease;
+}
+
+.alertName {
+  color: rgb(255, 0, 0);
+  font-size: 1.5rem;
+  font-weight: 500;
+  padding: 0.5rem;
+  text-align: center;
+}
+
 .currently {
   font-size: 18px;
   height: 40vh;
   overflow: scroll;
 }
 
+.currently::-webkit-scrollbar {
+  display: none;
+}
 .innerCurrent, .innerTop {
   display: flex;
   flex-direction: row;
@@ -69,6 +97,10 @@
   white-space: nowrap;
 }
 
+.hourly::-webkit-scrollbar {
+  display: none;
+}
+
 .hour {
   width: auto;
   margin-left: 0.5rem;
@@ -80,6 +112,11 @@
   flex-direction: row;
   height: 25vh;
   overflow: scroll;
+  scrollbar-width: none;
+}
+
+.daily::-webkit-scrollbar {
+  display: none;
 }
 
 .day {
