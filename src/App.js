@@ -58,7 +58,9 @@ const App = () => {
     }
   getData();
   }, [lat, long]);
-    
+  // function chooseLocation () {
+
+  // }
 return (
   // <Menu label='Show Weather'>
   <div>

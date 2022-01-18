@@ -51,25 +51,28 @@ export const WeatherData = ({data, address}) => {
     //     setStyle('alert');
 
     // }
+    function switchPre(text) {
+        const pre = {
+            'Rain': 'Rain',
+            'Snow': 'Snow',
+            'Clouds': 'Pre',
+            'Clear': 'Pre',
+            'Thunderstorm': 'Tstorm',
+            'Drizzle': 'Drizzle',
+            'Mist': 'Mist'
 
+        }
+        return pre[text]
+    }
+    
+    
+    
+    
     const infoRef = useRef();
 
     return (
-        <div>            
-            {data.alerts ?
-                <div>
-                    <div className='alertName' onClick={() => setAlert(!alert)}>
-                        {data.alerts[0].event}
-                    </div>
-                </div> : 
-                ''
-                }
+        <div>    
             
-            <div className='alert' ref={infoRef} 
-            style={ alert ? {height: infoRef.current.scrollHeight + 'px'} : {height: '0px'}}>
-                {data.alerts[0].description}
-                <hr/>
-            </div>
 
             <div className='currently'>
                 <div className='locale'>
@@ -79,6 +82,20 @@ export const WeatherData = ({data, address}) => {
                     <p>{address}</p>
                     <p className='dateTime'>{date},&nbsp;{time}</p>
                 </div>
+
+                {data.alerts ?
+                <div>
+                    <div className='alertName' onClick={() => setAlert(!alert)}>
+                        {data.alerts[0].event}
+                    </div>
+                    <div className='alert' ref={infoRef} 
+                        style={ alert ? {height: infoRef.current.scrollHeight + 'px'} : {height: '0px'}}>
+                            {data.alerts[0].description}
+                        <hr/>
+                    </div>
+                </div> :
+                ''
+            }
 
                 <button onClick={refreshPage}>reload</button>
                 
@@ -129,6 +146,7 @@ export const WeatherData = ({data, address}) => {
             <div className='daily'>
             {data.daily.map(day => {
                 const condition = (day.weather[0].icon);
+                const text = (day.weather[0].main);
                 return (
                     <div className= {
                         (day.weather[0].icon === '02d') ? 'day cloudy' : 
@@ -143,11 +161,12 @@ export const WeatherData = ({data, address}) => {
                         (day.weather[0].main === 'Rain') ? 'day rain' : 
                         (day.weather[0].main === 'Thunderstorm') ? 'day thunderstorm' : 'day clear'
                       }>
-                        <p>{moment.unix(day.dt).tz(data.timezone).format('ddd')}</p>
+                        <p style={{whiteSpace: 'nowrap', textAlign: 'center'}}>{moment.unix(day.dt).tz(data.timezone).format('ddd M/DD')}</p>
+                        <img className='dailyImage' src={switchImage(condition)}  style={{height: '50px', width: '50px', textAlign: 'center'}} alt='hourly icon'/>
                         <p>Hi:&nbsp;<span>{(day.temp.max).toFixed()}&deg;</span></p> 
                         <p>Lo:&nbsp;<span>{(day.temp.min).toFixed()}&deg;</span></p>
-                        <p>Pre:&nbsp;<span>{((day.pop)*100).toFixed()}&nbsp;%</span></p> 
-                        <img src={switchImage(condition)}  style={{height: '50px', width: '50px'}} alt='hourly icon'/>
+                        <p style={{width: '5rem'}}>{switchPre(text)}:&nbsp;<span>{((day.pop)*100).toFixed()}&nbsp;%</span></p> 
+                        
                     </div>
                 )
             })}
