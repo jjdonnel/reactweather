@@ -34,3 +34,19 @@ switchImage(condition);
         
       )}
     </div> 
+
+    const searchText = document.getElementById('location').value;
+            const platform = new H.service.Platform({
+                "apikey": atHereApi
+                });
+            var geocoder = platform.getGeocodingService();
+                geocoder.geocode(
+                    { searchText }, loc => {
+                        const location = loc;
+                        console.log(location);
+                        // showAddress(loc);
+                    }, error => {
+                        console.error(error);
+                    }
+            
+            );

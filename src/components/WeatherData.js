@@ -72,10 +72,7 @@ export const WeatherData = ({data, address}) => {
 
     return (
         <div>    
-            
-
-            <div className='currently'>
-                <div className='locale'>
+            <div className='locale'>
                     {/* <form onSubmit={getCityData}>
                         <input type='text' placeholder={address}/>
                     </form> */}
@@ -96,6 +93,11 @@ export const WeatherData = ({data, address}) => {
                 </div> :
                 ''
             }
+
+            <div className='currently'>
+                
+
+                
 
                 <button onClick={refreshPage}>reload</button>
                 
