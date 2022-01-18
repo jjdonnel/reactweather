@@ -106,7 +106,7 @@ export const WeatherData = ({data, address}) => {
                     <img src={switchImage(condition)} style={{height: '120px', width: '120px'}} alt='weather icon'/>
                     
                 </div>
-                <div className='wind'>Wind: <span>{windDir}&nbsp;{wind}</span> mph Gusts: <span>{gust}</span> mph</div>
+                <div className='wind'>Wind: <span>{windDir}&nbsp;{wind}</span> mph Gusts: <span>{data.current.wind_gust ? (data.current.wind_gust).toFixed() : gust}</span> mph</div>
                 
                 <div className='innerCurrent'>
                     
