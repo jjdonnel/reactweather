@@ -134,7 +134,7 @@ export const WeatherData = ({data, address}) => {
                     <div className='hour'>
                         <p>{moment.unix(hour.dt).tz(data.timezone).format('h a')}</p>
                         <p className='hourTemp'><span>{(hour.temp).toFixed()}&deg;</span></p>
-                        <img src={switchImage(condition)}  style={{height: '5rem', width: '5rem'}} alt='hourly icon'/>
+                        <img src={switchImage(condition)}  style={{height: '4rem', width: '4rem'}} alt='hourly icon'/>
                         <p><span>{windDir}&nbsp;{gusts}</span>&nbsp;mph</p>
                         <p><span>{(hour.dew_point).toFixed()}&deg;</span>&nbsp;dew</p>
                         <p style={{display: 'flex', flexDirection: 'row'}}><span>{(hour.pressure).toFixed()}</span>&nbsp;mb</p>

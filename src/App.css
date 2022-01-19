@@ -94,7 +94,7 @@ button {
 .hourly {
   font-size: 1.3rem;
   display: flex;
-  height: 23vh;
+  height: 22vh;
   overflow: scroll;
   white-space: nowrap;
 }
@@ -115,7 +115,7 @@ button {
   font-size: 1.3rem;
   display: flex;
   flex-direction: row;
-  height: 26vh;
+  height: 27vh;
   overflow: scroll;
   scrollbar-width: none;
 }
