@@ -95,7 +95,8 @@ button {
   font-size: 1.3rem;
   display: flex;
   height: 22vh;
-  overflow: scroll;
+  overflow-y: hidden;
+  overflow-x: scroll;
   white-space: nowrap;
 }
 
@@ -116,7 +117,8 @@ button {
   display: flex;
   flex-direction: row;
   height: 27vh;
-  overflow: scroll;
+  overflow-x: scroll;
+  overflow-y: hidden;
   scrollbar-width: none;
 }
 
