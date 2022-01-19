@@ -103,7 +103,7 @@ export const WeatherData = ({data, address}) => {
                 
                 <div className='innerTop'>
                     <p><span>{(data.current.temp).toFixed()}&deg;</span></p>
-                    <img src={switchImage(condition)} style={{height: '120px', width: '120px'}} alt='weather icon'/>
+                    <img src={switchImage(condition)} style={{height: '10rem', width: '10rem'}} alt='weather icon'/>
                     
                 </div>
                 <div className='wind'>Wind: <span>{windDir}&nbsp;{wind}</span> mph Gusts: <span>{data.current.wind_gust ? (data.current.wind_gust).toFixed() : gust}</span> mph</div>
@@ -133,12 +133,13 @@ export const WeatherData = ({data, address}) => {
                 return (
                     <div className='hour'>
                         <p>{moment.unix(hour.dt).tz(data.timezone).format('h a')}</p>
-                        <p><span>{(hour.temp).toFixed()}&deg;</span></p>
-                        <p><span>{(hour.dew_point).toFixed()}&deg;</span></p>
-                        <p style={{display: 'flex', flexDirection: 'row'}}><span>{(hour.pressure).toFixed()}</span>&nbsp;mb</p>
+                        <p className='hourTemp'><span>{(hour.temp).toFixed()}&deg;</span></p>
+                        <img src={switchImage(condition)}  style={{height: '5rem', width: '5rem'}} alt='hourly icon'/>
                         <p><span>{windDir}&nbsp;{gusts}</span>&nbsp;mph</p>
-                        <img src={switchImage(condition)}  style={{height: '40px', width: '40px'}} alt='hourly icon'/>
-                    </div>
+                        <p><span>{(hour.dew_point).toFixed()}&deg;</span>&nbsp;dew</p>
+                        <p style={{display: 'flex', flexDirection: 'row'}}><span>{(hour.pressure).toFixed()}</span>&nbsp;mb</p>
+                        
+                        </div>
                 )
             })}
             </div>

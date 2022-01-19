@@ -63,8 +63,8 @@ button {
 }
 
 .currently {
-  font-size: 18px;
-  height: 40vh;
+  font-size: 1.5rem;
+  height: 35vh;
   overflow: scroll;
 }
 
@@ -80,19 +80,21 @@ button {
 }
 
 .innerTop {
-  font-size: 3rem;
+  font-size: 5rem;
 }
 
 .locale {
+  height: 10vh;
   display: flex;
+  font-size: 1.2rem;
   flex-direction: column;
   align-items: center;
 }
 
 .hourly {
-  font-size: 16px;
+  font-size: 1.3rem;
   display: flex;
-  height: 27vh;
+  height: 24vh;
   overflow: scroll;
   white-space: nowrap;
 }
@@ -106,8 +108,11 @@ button {
   margin-left: 0.5rem;
 }
 
+.hourTemp {
+  font-size: 1.6rem;
+}
 .daily {
-  font-size: 16px;
+  font-size: 1.3rem;
   display: flex;
   flex-direction: row;
   height: 25vh;
@@ -130,7 +135,7 @@ button {
   margin-right: .2rem;
   padding-left: .2rem;
   padding-right: .2rem;
-  min-width: 100px;
+  min-width: 7rem;
   display: flex; 
   flex-direction: column; 
   /* justify-content: s; */
