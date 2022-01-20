@@ -106,7 +106,7 @@ export const WeatherData = ({data, address, lat, long}) => {
                 
                 
 
-                <button onClick={refreshPage}>reload</button>
+                <button className='reloadButton' onClick={refreshPage}>reload</button>
                 
                 <div className='innerTop'>
                     <p><span>{(data.current.temp).toFixed()}&deg;</span></p>
