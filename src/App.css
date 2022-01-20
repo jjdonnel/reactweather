@@ -30,7 +30,7 @@
 .bg {
   color: rgb(255, 255, 255);
   text-shadow: 2px 2px black;
-  font-weight: 100;
+  font-weight: 300;
   height: 100vh;
   background-repeat: no-repeat;
   background-size: cover;
@@ -72,7 +72,7 @@
 .alertName {
   color: rgb(255, 0, 0);
   font-size: 1.5rem;
-  font-weight: 500;
+  font-weight: 300;
   padding: 0.5rem;
   text-align: center;
 }
@@ -108,7 +108,7 @@
 
 .hourly {
   font-size: 1.3rem;
-  font-weight: 200;
+  font-weight: 300;
   display: flex;
   height: 22vh;
   overflow-y: hidden;
