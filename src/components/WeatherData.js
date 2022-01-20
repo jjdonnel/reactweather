@@ -96,16 +96,8 @@ export const WeatherData = ({data, address, lat, long}) => {
                 ''
             }
             <button className='radarButton' onClick={(e) => setIsToggled(!isToggled)}>radar</button>
+            
             <div className='currently'>
-                
-                
-                
-                <div className='radar' ref={infoRef} style={isToggled ? {height: infoRef.current.scrollHeight + 'px', overflow: 'hidden'} : {height: '0px', overflow: 'hidden'}}>
-                    <iframe src={`https://openweathermap.org/weathermap?basemap=map&cities=false&layer=radar&lat=${lat}&lon=${long}&zoom=7`} title='radarImagery' name='radar'style={{height: '35vh', width: '148%'}}/>
-                </div>
-                
-                
-
                 <button className='reloadButton' onClick={refreshPage}>reload</button>
                 
                 <div className='innerTop'>
@@ -125,6 +117,10 @@ export const WeatherData = ({data, address, lat, long}) => {
             </div>
 
             <hr/>
+
+            <div className='radar' ref={infoRef} style={isToggled ? {height: infoRef.current.scrollHeight + 'px', overflow: 'hidden'} : {height: '0px', overflow: 'hidden'}}>
+                    <iframe src={`https://openweathermap.org/weathermap?basemap=map&cities=false&layer=radar&lat=${lat}&lon=${long}&zoom=7`} title='radarImagery' name='radar'style={{height: '55vh', width: '148%'}}/>
+                </div>
         
             <div className='hourly'>
             {data.hourly.map(hour => {

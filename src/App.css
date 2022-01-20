@@ -179,7 +179,7 @@ span {
   text-align: center;
 }
 .cloudy {
-  background-image: url('https://res.cloudinary.com/jjdonnel/image/upload/v1568960016/cloudy_qnxsnb.jpg');
+  background-image: url('https://res.cloudinary.com/jjdonnel/image/upload/e_brightness:-50/v1568960016/cloudy_qnxsnb.jpg');
 }
 
 .cloudyNight {
@@ -193,11 +193,11 @@ span {
   background-image: url('https://res.cloudinary.com/jjdonnel/image/upload/v1567654813/NightSky_u3ts5x.png');
 }
 .snow {
-  background-image: url('https://res.cloudinary.com/jjdonnel/image/upload/v1573031978/snowflakes_c2n8jy.jpg');
+  background-image: url('https://res.cloudinary.com/jjdonnel/image/upload/e_brightness:-50/v1573031978/snowflakes_c2n8jy.jpg');
 }
 
 .rain {
-  background-image: url('https://res.cloudinary.com/jjdonnel/image/upload/v1572514891/raindrops2_deu4qj.jpg');
+  background-image: url('https://res.cloudinary.com/jjdonnel/image/upload/e_brightness:-50/v1572513997/raindrops_uhz1eo.jpg');
 }
 
 .thunderstorm {
