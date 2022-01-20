@@ -38,9 +38,10 @@
   /* padding: 1rem; */
 }
 
-button {
+.reloadButton {
   position: absolute;
   width: auto;
+  padding: .5rem;
   top: 5vh;
   right: 10px;
   background-color: rgb(0, 119, 255);
@@ -51,6 +52,7 @@ button {
 
 .radarButton {
   position: absolute;
+  padding: .5rem;
   width: auto;
   top: 5vh;
   background-color: rgb(0, 119, 255);
