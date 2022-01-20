@@ -110,7 +110,7 @@ export const WeatherData = ({data, address, lat, long}) => {
                 
                 <div className='innerTop'>
                     <p><span>{(data.current.temp).toFixed()}&deg;</span></p>
-                    <img src={switchImage(condition)} style={{height: '10rem', width: '10rem'}} alt='weather icon'/>
+                    <img src={switchImage(condition)} style={{height: '9rem', width: '9rem'}} alt='weather icon'/>
                     
                 </div>
                 <p style={{textAlign: 'center', fontSize: '2.5rem'}}>{data.current.weather[0].description}</p>
