@@ -78,7 +78,7 @@ return (
         (weather.current.weather[0].main === 'Rain') ? 'bg rain' : 
         (weather.current.weather[0].main === 'Thunderstorm') ? 'bg thunderstorm' : 'bg clear'
       }>
-        <WeatherData address={myLocation} data={weather}/>
+        <WeatherData address={myLocation} lat={lat} long={long} data={weather}/>
       </div>
     )
     :  ('loading...') 

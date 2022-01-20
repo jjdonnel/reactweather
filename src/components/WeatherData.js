@@ -1,7 +1,7 @@
 import {React, useState, useRef } from "react";
 import moment from 'moment-timezone';
 
-export const WeatherData = ({data, address}) => {
+export const WeatherData = ({data, address, lat, long}) => {
 
     const d = new Date();
         let date = d.toString().split(' ').splice(0,3).join(' ');
@@ -70,6 +70,8 @@ export const WeatherData = ({data, address}) => {
     
     const infoRef = useRef();
 
+    const [ isToggled, setIsToggled ] = useState(false);
+
     return (
         <div>    
             <div className='locale'>
@@ -93,10 +95,15 @@ export const WeatherData = ({data, address}) => {
                 </div> :
                 ''
             }
-
+            <button className='radarButton' onClick={(e) => setIsToggled(!isToggled)}>radar</button>
             <div className='currently'>
                 
-
+                
+                
+                <div className='radar' ref={infoRef} style={isToggled ? {height: infoRef.current.scrollHeight + 'px', overflow: 'hidden'} : {height: '0px', overflow: 'hidden'}}>
+                    <iframe src={`https://openweathermap.org/weathermap?basemap=map&cities=false&layer=radar&lat=${lat}&lon=${long}&zoom=7`} title='radarImagery' name='radar'style={{height: '35vh', width: '148%'}}/>
+                </div>
+                
                 
 
                 <button onClick={refreshPage}>reload</button>
@@ -106,16 +113,14 @@ export const WeatherData = ({data, address}) => {
                     <img src={switchImage(condition)} style={{height: '10rem', width: '10rem'}} alt='weather icon'/>
                     
                 </div>
+                <p style={{textAlign: 'center', fontSize: '2.5rem'}}>{data.current.weather[0].description}</p>
                 <div className='wind'>Wind: <span>{windDir}&nbsp;{wind}</span> mph Gusts: <span>{data.current.wind_gust ? (data.current.wind_gust).toFixed() : gust}</span> mph</div>
-                
-                <div className='innerCurrent'>
-                    
-                    <p>RH: <span>{data.current.humidity}</span> %</p>
-                    <p>Press: <span>{data.current.pressure}</span> mb</p>
-                </div>
+               
+                <br/>
                 <div className='innerCurrent'>
                     <p>Td: <span>{(data.current.dew_point).toFixed()}&deg;</span></p>
-                    <p> <span>{data.current.weather[0].description}</span></p>
+                    <p>RH: <span>{data.current.humidity}</span> %</p>
+                    <p>Press: <span>{data.current.pressure}</span> mb</p>
                 </div>
             </div>
 
@@ -174,6 +179,7 @@ export const WeatherData = ({data, address}) => {
                 )
             })}
             </div>
+            
         </div>
     );
 };
