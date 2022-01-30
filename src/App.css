@@ -70,11 +70,19 @@
 }
 
 .alertName {
-  color: rgb(255, 0, 0);
+  color: rgb(0, 255, 255);
   font-size: 1.5rem;
   font-weight: 300;
   padding: 0.5rem;
   text-align: center;
+  cursor: pointer;
+  animation: flash 2s linear infinite;
+}
+
+@keyframes flash {
+  50% {
+    opacity: 0;
+  }
 }
 
 .currently {
@@ -197,7 +205,7 @@ span {
 }
 
 .rain {
-  background-image: url('https://res.cloudinary.com/jjdonnel/image/upload/e_brightness:-50/v1572513997/raindrops_uhz1eo.jpg');
+  background-image: url('https://res.cloudinary.com/jjdonnel/image/upload/e_brightness:-50/v1643527733/raindrops_t7ti7i.jpg');
 }
 
 .thunderstorm {

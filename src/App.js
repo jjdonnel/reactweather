@@ -15,16 +15,18 @@ const App = () => {
   const [weather, setWeather] = useState ([]);
   const [myLocation, setMyLocation] = useState ([]);
 
-  const getLocation = (position) => {
-    setLat(position.coords.latitude);
-    setLong(position.coords.longitude);
-  };
+  
     
   function showAddress(loc) {
     setMyLocation(loc.items[0].address.city  +', '+ loc.items[0].address.state);
   };
 
   useEffect( () => {
+
+    const getLocation = (position) => {
+      setLat(position.coords.latitude);
+      setLong(position.coords.longitude);
+    };
     
     const getData = async () => {
         await navigator.geolocation.getCurrentPosition(
@@ -39,7 +41,7 @@ const App = () => {
                     geocoder.reverseGeocode(
                         {
                             limit: 1,
-                            at: lat + "," + long
+                            at: lat + ',' + long
                         }, loc => {
                             console.log(loc);
                             showAddress(loc);

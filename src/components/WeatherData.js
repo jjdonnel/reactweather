@@ -65,7 +65,32 @@ export const WeatherData = ({data, address, lat, long}) => {
         return pre[text]
     }
     
-    
+    // const getCityData = async () => {
+    // let inputAddress =  React.createRef();
+    // const H = window.H;
+    //     var platform = new H.service.Platform({
+    //       "apikey": atHereApi
+    //       });
+    //     var geocoder = platform.getSearchService();
+    //                 geocoder.geocode(
+    //                     {
+    //                       q: inputAddress.current.value
+    //                     }, loc => {
+    //                         console.log(loc);
+    //                         showAddress(loc);
+    //                     }, error => {
+    //                         console.error(error);
+    //                     }
+                
+    //             );
+
+    //       await axios.get(`https://api.openweathermap.org/data/2.5/onecall?lat=${lat}&lon=${long}&units=imperial&appid=${apiKey}`)
+    //       .then(response => response.data)
+    //       .then(result => {
+    //         setWeather(result);
+    //         console.log(result);
+    //       });
+    // }
     
     
     const infoRef = useRef();
@@ -119,7 +144,7 @@ export const WeatherData = ({data, address, lat, long}) => {
             <hr/>
 
             <div className='radar' ref={infoRef} style={isToggled ? {height: infoRef.current.scrollHeight + 'px', overflow: 'hidden'} : {height: '0px', overflow: 'hidden'}}>
-                    <iframe src={`https://openweathermap.org/weathermap?basemap=map&cities=false&layer=radar&lat=${lat}&lon=${long}&zoom=7`} title='radarImagery' name='radar'style={{height: '55vh', width: '148%'}}/>
+                    <iframe src={`https://openweathermap.org/weathermap?basemap=map&cities=false&layer=radar&lat=${lat}&lon=${long}&zoom=5`} title='radarImagery' name='radar'style={{height: '55vh', width: '148%'}}/>
                 </div>
         
             <div className='hourly'>
