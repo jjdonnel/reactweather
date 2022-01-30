@@ -89,6 +89,7 @@
   font-size: 1.5rem;
   height: 35vh;
   overflow: scroll;
+  transition: height .5s ease;
 }
 
 .currently::-webkit-scrollbar {
@@ -96,7 +97,7 @@
 }
 .innerCurrent, .innerTop {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   justify-content: space-around;
   align-items: center;
   
@@ -104,6 +105,7 @@
 
 .innerTop {
   font-size: 4rem;
+  flex-direction: row;
 }
 
 .locale {
@@ -131,6 +133,7 @@
 .hour {
   width: auto;
   margin-left: 0.5rem;
+  text-align: center;
 }
 
 .hourTemp {

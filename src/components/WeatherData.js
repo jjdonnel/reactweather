@@ -94,8 +94,10 @@ export const WeatherData = ({data, address, lat, long}) => {
     
     
     const infoRef = useRef();
+    const currentRef = useRef();
 
     const [ isToggled, setIsToggled ] = useState(false);
+    const [ isExpanded, setIsExpanded ] = useState(false);
 
     return (
         <div>    
@@ -122,7 +124,8 @@ export const WeatherData = ({data, address, lat, long}) => {
             }
             <button className='radarButton' onClick={(e) => setIsToggled(!isToggled)}>radar</button>
             
-            <div className='currently'>
+            <div className='currently' ref={currentRef} onClick={(e) => setIsExpanded(!isExpanded)}
+                style={isExpanded ? {height: currentRef.current.scrollHeight + 'px', overflow: 'hidden'} : {height: '35vh', overflow: 'hidden'}}>
                 <button className='reloadButton' onClick={refreshPage}>reload</button>
                 
                 <div className='innerTop'>
@@ -135,9 +138,13 @@ export const WeatherData = ({data, address, lat, long}) => {
                
                 <br/>
                 <div className='innerCurrent'>
-                    <p>Td: <span>{(data.current.dew_point).toFixed()}&deg;</span></p>
+                    <p>Dew Point: <span>{(data.current.dew_point).toFixed()}&deg;</span></p>
                     <p>RH: <span>{data.current.humidity}</span> %</p>
-                    <p>Press: <span>{data.current.pressure}</span> mb</p>
+                    <p>Pressure: <span>{data.current.pressure}</span> mb</p>
+                    <p>feels: <span>{(data.current.feels_like).toFixed()}&deg;</span></p>
+                    <p>Visibility: <span>{(data.current.visibility/5280).toFixed()}</span> mi</p>
+                    <p>Sunrise: <span>{moment.unix(data.current.sunrise).tz(data.timezone).format('h:mm a')}</span></p>
+                    <p>Sunset: <span>{moment.unix(data.current.sunset).tz(data.timezone).format('h:mm a')}</span></p>
                 </div>
             </div>
 
@@ -161,6 +168,7 @@ export const WeatherData = ({data, address, lat, long}) => {
                         <p>{moment.unix(hour.dt).tz(data.timezone).format('h a')}</p>
                         <p className='hourTemp'><span>{(hour.temp).toFixed()}&deg;</span></p>
                         <img src={switchImage(condition)}  style={{height: '4rem', width: '4rem'}} alt='hourly icon'/>
+                        <br/>
                         <p><span>{windDir}&nbsp;{gusts}</span>&nbsp;mph</p>
                         <p><span>{(hour.dew_point).toFixed()}&deg;</span>&nbsp;dew</p>
                         <p style={{display: 'flex', flexDirection: 'row'}}><span>{(hour.pressure).toFixed()}</span>&nbsp;mb</p>
@@ -190,7 +198,7 @@ export const WeatherData = ({data, address, lat, long}) => {
                         (day.weather[0].main === 'Rain') ? 'day rain' : 
                         (day.weather[0].main === 'Thunderstorm') ? 'day thunderstorm' : 'day clear'
                       }>
-                        <p style={{whiteSpace: 'nowrap', textAlign: 'center'}}>{moment.unix(day.dt).tz(data.timezone).format('ddd M/DD')}</p>
+                        <p style={{whiteSpace: 'nowrap', textAlign: 'center'}}>{moment.unix(day.dt).tz(data.timezone).format('ddd M/D')}</p>
                         <img className='dailyImage' src={switchImage(condition)}  style={{height: '50px', width: '50px', textAlign: 'center'}} alt='hourly icon'/>
                         <p>Hi:&nbsp;<span>{(day.temp.max).toFixed()}&deg;</span></p> 
                         <p>Lo:&nbsp;<span>{(day.temp.min).toFixed()}&deg;</span></p>
