@@ -139,9 +139,9 @@ export const WeatherData = ({data, address, lat, long}) => {
                 <br/>
                 <div className='innerCurrent'>
                     <p>Dew Point: <span>{(data.current.dew_point).toFixed()}&deg;</span></p>
+                    <p>Feels Like: <span>{(data.current.feels_like).toFixed()}&deg;</span></p>
                     <p>RH: <span>{data.current.humidity}</span> %</p>
                     <p>Pressure: <span>{data.current.pressure}</span> mb</p>
-                    <p>feels: <span>{(data.current.feels_like).toFixed()}&deg;</span></p>
                     <p>Visibility: <span>{(data.current.visibility/5280).toFixed()}</span> mi</p>
                     <p>Sunrise: <span>{moment.unix(data.current.sunrise).tz(data.timezone).format('h:mm a')}</span></p>
                     <p>Sunset: <span>{moment.unix(data.current.sunset).tz(data.timezone).format('h:mm a')}</span></p>
